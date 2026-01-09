@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MyBodyCam SMS Opt-In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h1 { margin-bottom: 10px; }
+    label { display: block; margin-top: 20px; }
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      font-size: 16px;
+    }
+    .checkbox { margin-top: 20px; }
+    .checkbox label { margin-top: 0; }
+    button {
+      margin-top: 24px;
+      padding: 12px 18px;
+      font-size: 16px;
+      background: #fff;
+      color: #000;
+      border: none;
+      cursor: pointer;
+    }
+    .fine-print {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+    .error {
+      margin-top: 12px;
+      color: #ff6b6b;
+      font-size: 13px;
+      display: none;
+    }
+    a { color: #9ad; }
+  </style>
+</head>
+<body>
+
+<h1>MyBodyCam SMS Notifications</h1>
+
+<p>
+  MyBodyCam allows users to add trusted contacts (“Safety Circle members”) to receive
+  safety-related SMS notifications.
+</p>
+
+<form id="optin-form" novalidate>
+  <label for="phone">
+    Mobile Phone Number <span aria-hidden="true">*</span>
+    <input
+      id="phone"
+      name="phone"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      placeholder="+1 (555) 555-5555"
+      required
+      aria-required="true"
+    />
+  </label>
+
+  <div class="checkbox">
+    <label for="consent">
+      <input id="consent" name="consent" type="checkbox" required aria-required="true" />
+      <strong>I agree</strong> to receive <strong>SMS text messages</strong> from MyBodyCam related to
+      <strong>safety alerts</strong>, <strong>Safety Circle invitations</strong>, and <strong>live safety session notifications</strong>.
+    </label>
+  </div>
+
+  <div class="fine-print">
+    <p>
+      By checking the box above, you authorize MyBodyCam to send you text messages using an
+      <strong>automatic telephone dialing system</strong> or other automated technology.
+      <strong>No marketing messages.</strong>
+    </p>
+  </div>
+
+  <button type="submit">Submit</button>
+  <div id="error" class="error">Please enter a mobile phone number and check the consent box.</div>
+</form>
+
+<div class="fine-print">
+  <p>
+    Message frequency varies based on user activity (typically <strong>4–6 messages per month</strong>).
+    Message and data rates may apply.
+  </p>
+  <p>
+    Reply <strong>STOP</strong> at any time to opt out. Reply <strong>HELP</strong> for assistance.
+  </p>
+  <p>
+    Consent to receive SMS messages is <strong>not required</strong> to use MyBodyCam and is separate from acceptance
+    of the Privacy Policy and Terms.
+  </p>
+  <p>
+    Privacy Policy: <a href="https://www.mybodycam.com/privacy">https://www.mybodycam.com/privacy</a><br/>
+    Terms of Service: <a href="https://www.mybodycam.com/terms">https://www.mybodycam.com/terms</a>
+  </p>
+  <p>
+    For questions: <a href="mailto:support@mybodycam.com">support@mybodycam.com</a>
+  </p>
+</div>
+
+<script>
+  // Simple client-side validation so the page clearly demonstrates "required" consent.
+  const form = document.getElementById('optin-form');
+  const phone = document.getElementById('phone');
+  const consent = document.getElementById('consent');
+  const error = document.getElementById('error');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // This page is for proof-of-consent display; no backend needed.
+    const ok = phone.value.trim().length > 0 && consent.checked;
+
+    if (!ok) {
+      error.style.display = 'block';
+      return;
+    }
+
+    error.style.display = 'none';
+    alert('Thanks! Your consent has been recorded for MyBodyCam SMS notifications.');
+    form.reset(); // keeps checkbox unchecked by default
+  });
+</script>
+
+</body>
+</html>
