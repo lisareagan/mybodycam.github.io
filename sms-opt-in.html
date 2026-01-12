@@ -59,6 +59,10 @@
   safety-related SMS notifications.
 </p>
 
+<p style="font-size:14px;color:#bbb;">
+  Receiving SMS messages is <strong>optional</strong>. You may use MyBodyCam without agreeing to receive SMS notifications.
+</p>
+
 <form id="optin-form" novalidate>
   <label for="phone">
     Mobile Phone Number <span aria-hidden="true">*</span>
@@ -76,22 +80,25 @@
 
   <div class="checkbox">
     <label for="consent">
-      <input id="consent" name="consent" type="checkbox" required aria-required="true" />
-      <strong>I agree</strong> to receive <strong>SMS text messages</strong> from <strong>MyBodyCam, a product of The Reagan Group</strong> related to
-      <strong>safety alerts</strong>, <strong>Safety Circle invitations</strong>, and <strong>live safety session notifications</strong>.
+      <input id="consent" name="consent" type="checkbox" />
+      <strong>I agree</strong> to receive <strong>SMS text messages</strong> from
+      <strong>MyBodyCam, a product of The Reagan Group</strong> related to
+      <strong>safety alerts</strong>, <strong>Safety Circle invitations</strong>, and
+      <strong>live safety session notifications</strong>.
     </label>
   </div>
 
   <div class="fine-print">
     <p>
-      By checking the box above, you authorize <strong>MyBodyCam, a product of The Reagan Group</strong> to send you text messages using an
+      By voluntarily checking the box above, you authorize
+      <strong>MyBodyCam, a product of The Reagan Group</strong> to send you text messages using an
       <strong>automatic telephone dialing system</strong> or other automated technology.
       <strong>No marketing messages.</strong>
     </p>
   </div>
 
   <button type="submit">Submit</button>
-  <div id="error" class="error">Please enter a mobile phone number and check the consent box.</div>
+  <div id="error" class="error">Please enter a valid mobile phone number.</div>
 </form>
 
 <div class="fine-print">
@@ -117,15 +124,13 @@
 </div>
 
 <script>
-  // Simple client-side validation so the page clearly demonstrates "required" consent.
   const form = document.getElementById('optin-form');
   const phone = document.getElementById('phone');
-  const consent = document.getElementById('consent');
   const error = document.getElementById('error');
 
   form.addEventListener('submit', (e) => {
-    e.preventDefault(); // This page is for proof-of-consent display; no backend needed.
-    const ok = phone.value.trim().length > 0 && consent.checked;
+    e.preventDefault();
+    const ok = phone.value.trim().length > 0;
 
     if (!ok) {
       error.style.display = 'block';
@@ -133,10 +138,11 @@
     }
 
     error.style.display = 'none';
-    alert('Thanks! Your consent has been recorded for MyBodyCam SMS notifications.');
-    form.reset(); // keeps checkbox unchecked by default
+    alert('Thanks! Your preferences have been saved.');
+    form.reset();
   });
 </script>
 
 </body>
 </html>
+
